@@ -11,7 +11,7 @@ class HomeDataSource {
       path: "https://api.github.com/search/repositories",
       queryParams: {'q': topic, 'per_page': page},
     );
-    final topRepositories = TopRepositories.fromJson(jsonDecode(result.data));
+    final topRepositories = TopRepositories.fromJson(result.data);
     return topRepositories;
   }
 }
