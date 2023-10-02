@@ -9,21 +9,18 @@ class TopRepositoriesList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(
-        // left: 4,
-        // right: 4,
-        top: 8,
-        bottom: 8,
+      margin: const EdgeInsets.symmetric(
+        vertical: 8,
       ),
       child: ListView.builder(
-        padding: EdgeInsets.all(4),
+        padding: const EdgeInsets.all(4),
         itemCount: topRepositories.items?.length ?? 0,
         itemBuilder: (BuildContext context, int index) {
           final isPublic = topRepositories.items![index].visibility == "public";
 
           return Container(
-            margin: EdgeInsets.all(8),
-            padding: EdgeInsets.all(8),
+            margin: const EdgeInsets.all(8),
+            padding: const EdgeInsets.all(8),
             decoration: BoxDecoration(
               border: Border.all(
                 color: Colors.grey.shade400,
@@ -34,37 +31,23 @@ class TopRepositoriesList extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
-                // Padding(
-                //   padding: const EdgeInsets.all(4.0),
-                //   child: Align(
-                //     alignment: Alignment.center,
-                //     child: Text(
-                //       "Repository no: ${index+1}",
-                //       style: TextStyle(
-                //         fontSize: 20,
-                //         fontWeight: FontWeight.w500,
-                //       ),
-                //     ),
-                //   ),
-                // ),
                 Container(
-                  margin: EdgeInsets.all(4),
-                  padding: EdgeInsets.only(
-                    left: 12,
-                    right: 12,
-                    top: 4,
+                  margin: const EdgeInsets.all(4),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 12,
+                    vertical: 4,
                   ),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(50),
                     color: isPublic ? Colors.greenAccent : Colors.redAccent,
                   ),
-                  child: isPublic ? Text("Public") : Text("Private"),
+                  child: isPublic ? const Text("Public") : const Text("Private"),
                 ),
                 Align(
                   alignment: Alignment.centerLeft,
                   child: Text(
                     "${topRepositories.items![index].fullName}",
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.w500,
                     ),
@@ -74,7 +57,7 @@ class TopRepositoriesList extends StatelessWidget {
                   alignment: Alignment.centerLeft,
                   child: Text(
                     "owner: ${topRepositories.items![index].owner!.login}",
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 12,
                       color: Colors.grey,
                     ),
@@ -83,26 +66,26 @@ class TopRepositoriesList extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
-                    Icon(
+                    const Icon(
                       Icons.visibility_outlined,
                       color: Colors.blueGrey,
                       size: 28,
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 5,
                     ),
                     Text(
                       "${topRepositories.items![index].watchersCount}",
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 10,
                     ),
-                    Icon(
+                    const Icon(
                       Icons.star_border_purple500_outlined,
                       color: Colors.yellow,
                       size: 28,
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 5,
                     ),
                     Text(

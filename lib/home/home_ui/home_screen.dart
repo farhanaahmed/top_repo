@@ -36,7 +36,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text(
+        title: const Text(
           "Github Top Repositories",
           style: TextStyle(
             color: Colors.white,
@@ -53,7 +53,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 bloc: _bloc,
                 builder: (context, state) {
                   if (state is HomeLoadingState) {
-                    return Center(
+                    return const Center(
                       child: SizedBox(
                         height: 30,
                         width: 30,
@@ -63,7 +63,6 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                     );
                   } else if (state is HomeLoadedState) {
-                    print("Reached loaded state");
                     final TopRepositories topRepositories =
                         state.loadedTopRepositories;
                     return TopRepositoriesList(
@@ -71,15 +70,13 @@ class _HomeScreenState extends State<HomeScreen> {
                   } else if (state is HomeErrorState) {
                     return Text(state.msg);
                   } else {
-                    return Container(
-                      child: Center(
-                        child: Text(
-                          "Search for top repositories on Github",
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.w500,
-                          ),
+                    return const Center(
+                      child: Text(
+                        "Search for top repositories on Github",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.w500,
                         ),
                       ),
                     );
@@ -94,7 +91,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: Padding(
                     padding: const EdgeInsets.all(16),
                     child: TextField(
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         hintText: ("Please enter a topic to search"),
                       ),
                       controller: _controller,
@@ -102,7 +99,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ),
                 Container(
-                  margin: EdgeInsets.all(10),
+                  margin: const EdgeInsets.all(10),
                   child: MaterialButton(
                     onPressed: () {
                       if (_controller.text.isEmpty) {
@@ -112,17 +109,18 @@ class _HomeScreenState extends State<HomeScreen> {
                         );
                       } else {
                         _bloc.add(HomeFetchDataEvent(_controller.text));
+                        FocusManager.instance.primaryFocus?.unfocus();
                       }
                     },
-                    child: Text(
+                    color: Colors.black,
+                    height: 50,
+                    minWidth: 50,
+                    child: const Text(
                       "Search",
                       style: TextStyle(
                         color: Colors.white,
                       ),
                     ),
-                    color: Colors.black,
-                    height: 50,
-                    minWidth: 50,
                   ),
                 ),
               ],
