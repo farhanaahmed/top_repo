@@ -11,11 +11,11 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
 
   final HomeDataSource _homeDataSource = HomeDataSource();
 
-  void _onHomeFetchDataEvent(event, emit) async {
+  void _onHomeFetchDataEvent(HomeFetchDataEvent event, emit) async {
     emit(HomeLoadingState());
     try {
       final TopRepositories topRepositories =
-          await _homeDataSource.getRepos("android", 10);
+          await _homeDataSource.getRepos(event.topic, 10);
       emit(HomeLoadedState(topRepositories));
     } catch (e) {
       emit(HomeErrorState(e.toString()));

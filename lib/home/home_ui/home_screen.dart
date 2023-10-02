@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:top_repo/home/bloc_architecture/home_event.dart';
 import 'package:top_repo/home/bloc_architecture/home_state.dart';
 import 'package:top_repo/home/home_data/top_repositories.dart';
@@ -16,6 +17,20 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   final HomeBloc _bloc = HomeBloc();
+  late TextEditingController _controller;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = TextEditingController();
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,8 +51,8 @@ class _HomeScreenState extends State<HomeScreen> {
             Expanded(
               child: BlocBuilder(
                 bloc: _bloc,
-                builder: (context,state){
-                  if(state is HomeLoadingState){
+                builder: (context, state) {
+                  if (state is HomeLoadingState) {
                     return Center(
                       child: SizedBox(
                         height: 30,
@@ -47,35 +62,71 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                       ),
                     );
-                  }
-                  else if(state is HomeLoadedState){
+                  } else if (state is HomeLoadedState) {
                     print("Reached loaded state");
-                    final TopRepositories topRepositories = state.loadedTopRepositories;
-                    return TopRepositoriesList(topRepositories: topRepositories);
-                  }
-                  else if(state is HomeErrorState){
+                    final TopRepositories topRepositories =
+                        state.loadedTopRepositories;
+                    return TopRepositoriesList(
+                        topRepositories: topRepositories);
+                  } else if (state is HomeErrorState) {
                     return Text(state.msg);
-                  }else{
-                    return Container();
+                  } else {
+                    return Container(
+                      child: Center(
+                        child: Text(
+                          "Search for top repositories on Github",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                      ),
+                    );
                   }
                 },
               ),
             ),
-            MaterialButton(
-              onPressed: () {
-                _bloc.add(HomeFetchDataEvent());
-              },
-              child: Text(
-                "Load Data",
-                style: TextStyle(
-                  color: Colors.white,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.all(16),
+                    child: TextField(
+                      decoration: InputDecoration(
+                        hintText: ("Please enter a topic to search"),
+                      ),
+                      controller: _controller,
+                    ),
+                  ),
                 ),
-              ),
-              color: Colors.lightBlueAccent,
-              height: 50,
-              minWidth: 100,
+                Container(
+                  margin: EdgeInsets.all(10),
+                  child: MaterialButton(
+                    onPressed: () {
+                      if (_controller.text.isEmpty) {
+                        Fluttertoast.showToast(
+                          msg: "Text field can't be empty!",
+                          toastLength: Toast.LENGTH_SHORT,
+                        );
+                      } else {
+                        _bloc.add(HomeFetchDataEvent(_controller.text));
+                      }
+                    },
+                    child: Text(
+                      "Search",
+                      style: TextStyle(
+                        color: Colors.white,
+                      ),
+                    ),
+                    color: Colors.black,
+                    height: 50,
+                    minWidth: 50,
+                  ),
+                ),
+              ],
             ),
-
           ],
         ),
       ),
