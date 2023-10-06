@@ -19,8 +19,16 @@ class Description extends StatelessWidget {
         backgroundColor: Colors.black,
       ),
       body: Container(
-        child: Text(
-          "This is description screen",
+        padding: EdgeInsets.all(8),
+        margin: EdgeInsets.all(8),
+        child: Center(
+          child: Column(
+            children: [
+              Text(
+                "This is Description Page",
+              ),
+            ],
+          ),
         ),
       ),
     );
