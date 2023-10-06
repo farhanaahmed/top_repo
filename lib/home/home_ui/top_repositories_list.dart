@@ -46,7 +46,7 @@ class TopRepositoriesList extends StatelessWidget {
                 Align(
                   alignment: Alignment.centerLeft,
                   child: Text(
-                    "${topRepositories.items![index].fullName}",
+                    "${topRepositories.items![index].name}",
                     style: const TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.w500,
