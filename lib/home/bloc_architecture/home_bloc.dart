@@ -18,6 +18,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
           await _homeDataSource.getRepos(event.topic, 10);
       emit(HomeLoadedState(topRepositories));
     } catch (e) {
+      print(e);
       emit(HomeErrorState(e.toString()));
     }
   }
