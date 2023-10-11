@@ -15,6 +15,7 @@ class InfoBox extends StatelessWidget {
         border: Border.all(
           color: const Color(0xffAEAEAE),
         ),
+        borderRadius: BorderRadius.circular(8),
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
