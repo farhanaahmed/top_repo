@@ -19,10 +19,14 @@ class TopRepositoriesList extends StatelessWidget {
         itemBuilder: (BuildContext context, int index) {
           final isPublic = topRepositories.items![index].visibility == "public";
           return InkWell(
-            onTap: (){
+            onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (ctx)=>Description()),
+                MaterialPageRoute(
+                  builder: (ctx) => Description(
+                    item: topRepositories.items![index],
+                  ),
+                ),
               );
             },
             child: Container(
