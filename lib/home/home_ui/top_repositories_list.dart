@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:top_repo/home/home_data/top_repositories.dart';
-import 'package:top_repo/home/home_ui/description.dart';
+import 'package:top_repo/description/ui/description.dart';
 
 class TopRepositoriesList extends StatelessWidget {
   final TopRepositories topRepositories;

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:top_repo/description/ui/widget/single_info.dart';
 import 'package:top_repo/home/home_data/top_repositories.dart';
-import 'package:top_repo/home/home_ui/widget/single_info.dart';
 
 class InfoBox extends StatelessWidget {
   const InfoBox({super.key, required this.item});

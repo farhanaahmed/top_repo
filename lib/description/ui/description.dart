@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:top_repo/description/ui/widget/info_box.dart';
 import 'package:top_repo/home/home_data/top_repositories.dart';
-import 'package:top_repo/home/home_ui/widget/info_box.dart';
+
 
 class Description extends StatelessWidget {
   Description({super.key, required this.item}) {
