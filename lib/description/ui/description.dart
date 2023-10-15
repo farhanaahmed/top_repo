@@ -3,7 +3,7 @@ import 'package:intl/intl.dart';
 import 'package:top_repo/description/ui/widget/info_box.dart';
 import 'package:top_repo/description/ui/widget/owner_info.dart';
 import 'package:top_repo/home/home_data/top_repositories.dart';
-
+import 'package:url_launcher/url_launcher.dart';
 
 class Description extends StatelessWidget {
   Description({super.key, required this.item}) {
@@ -41,6 +41,7 @@ class Description extends StatelessWidget {
         padding: const EdgeInsets.all(8),
         margin: const EdgeInsets.all(8),
         child: Column(
+          mainAxisSize: MainAxisSize.max,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const SizedBox(
@@ -74,7 +75,6 @@ class Description extends StatelessWidget {
             const SizedBox(
               height: 20,
             ),
-
             Text(
               item.description ?? "No Description Available.",
               style: const TextStyle(
@@ -84,12 +84,38 @@ class Description extends StatelessWidget {
             const SizedBox(
               height: 20,
             ),
-            InfoBox(item: item,),
+            InfoBox(
+              item: item,
+            ),
             const SizedBox(
               height: 30,
             ),
-            OwnerInfo(item: item,),
-
+            OwnerInfo(
+              item: item,
+            ),
+            Spacer(),
+            Center(
+              child: Container(
+                decoration: BoxDecoration(
+                  color: Colors.black,
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                width: double.infinity,
+                height: 60,
+                child: MaterialButton(
+                  child: const Text(
+                    "View Repositories on Github",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 20,
+                    ),
+                  ),
+                  onPressed: () {
+                    launchUrl(Uri.parse(item.htmlUrl!));
+                  },
+                ),
+              ),
+            )
           ],
         ),
       ),
