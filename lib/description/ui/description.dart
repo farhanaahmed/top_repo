@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:top_repo/description/ui/widget/info_box.dart';
+import 'package:top_repo/description/ui/widget/owner_info.dart';
 import 'package:top_repo/home/home_data/top_repositories.dart';
 
 
@@ -84,6 +85,11 @@ class Description extends StatelessWidget {
               height: 20,
             ),
             InfoBox(item: item,),
+            const SizedBox(
+              height: 30,
+            ),
+            OwnerInfo(item: item,),
+
           ],
         ),
       ),
