@@ -1,8 +1,7 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:top_repo/description/ui/widget/owner_urls.dart';
 import 'package:top_repo/home/home_data/top_repositories.dart';
-import 'package:url_launcher/url_launcher.dart';
+
 
 class OwnerInfo extends StatefulWidget {
   const OwnerInfo({super.key, required this.item});
@@ -20,34 +19,37 @@ class _OwnerInfoState extends State<OwnerInfo> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            const Text(
-              "Owner Info",
-              style: TextStyle(
-                fontSize: 16,
+        InkWell(
+          onTap: () {
+            setState(() {
+              selected = !selected;
+              //print(selected);
+            });
+          },
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              const Text(
+                "Owner Info",
+                style: TextStyle(
+                  fontSize: 16,
+                ),
               ),
-            ),
-            IconButton(
-              onPressed: () {
-                setState(() {
-                  selected = !selected;
-                  //print(selected);
-                });
-              },
-              icon: selected
+              selected
                   ? const Icon(
-                      Icons.keyboard_arrow_up,
-                      size: 32,
-                    )
+                Icons.keyboard_arrow_up,
+                size: 32,
+              )
                   : const Icon(
-                      Icons.keyboard_arrow_down,
-                      size: 32,
-                    ),
-            ),
-          ],
+                Icons.keyboard_arrow_down,
+                size: 32,
+              ),
+            ],
+          ),
         ),
+       const SizedBox(
+         height: 20,
+       ),
        if(selected)
          Column(
            crossAxisAlignment: CrossAxisAlignment.start,
